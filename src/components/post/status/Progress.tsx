@@ -1,11 +1,7 @@
 import styles from './main.module.css'
 function Pending() {
   return (
-    <strong
-      className={
-        styles.status__strong + ' bg-amber-100 text-amber-700'
-      }
-    >
+    <strong className={styles.status__strong + ' bg-amber-100 text-amber-700'}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
