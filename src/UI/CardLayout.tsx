@@ -13,7 +13,6 @@ function CardLayout() {
         <Card isCompleted={!completed} />
         <Card isCompleted={completed} />
         <Card isCompleted={!completed} />
-        <Card isCompleted={completed} />
       </div>
       <Pagination />
     </>
