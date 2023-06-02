@@ -4,7 +4,7 @@ function Button() {
   return (
     <div className="flex items-center justify-center mb-3 fixed top-2 left-0 w-full">
       <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
-        <Link to="/">
+        <Link to="/new">
           <button className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative">
             <svg
               xmlns="http://www.w3.org/2000/svg"
