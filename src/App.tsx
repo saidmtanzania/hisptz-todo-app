@@ -1,4 +1,4 @@
-import Router from './context/Routez'
+import Router from './Routes/Routez'
 import './App.css'
 
 function App() {
