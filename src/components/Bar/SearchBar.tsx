@@ -2,7 +2,7 @@ import FilterBar from './FilterBar'
 
 function SearchBar() {
   return (
-    <div>
+    <div className="mx-auto">
       <div className="lg:flex gap-2">
         <div className="relative mb-2">
           <input

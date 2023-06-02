@@ -1,40 +1,42 @@
+import styles from './NewTodo.module.css'
+
 function NewTodo() {
   return (
-    <div className="mt-16 mx-auto lg:w-96">
-      <label
-        htmlFor="title"
-        className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 mb-5"
-      >
+    <div className={styles.main__lay}>
+      <label htmlFor="title" className={styles.label__title}>
         <input
           type="text"
           id="title"
           placeholder="Title"
-          className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+          className={styles.title__input + ' peer'}
         />
 
-        <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+        <span
+          className={
+            styles.title__span +
+            ' peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'
+          }
+        >
           Title
         </span>
       </label>
-      <label
-        htmlFor="Description"
-        className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
-      >
+      <label htmlFor="Description" className={styles.label__title}>
         <textarea
           id="Description"
           placeholder="Description"
-          className="peer h-16 w-full resize-none border-none bg-transparent p-1 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+          className={styles.text__area + ' peer '}
         ></textarea>
 
-        <span className="absolute left-3 top-3 transform -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+        <span
+          className={
+            styles.desc__span +
+            ' peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'
+          }
+        >
           Description
         </span>
       </label>
-      <a
-        className="inline-block rounded-full border mt-3 border-indigo-600 p-3 text-indigo-600 hover:bg-indigo-600 hover:text-white focus:outline-none focus:ring active:bg-indigo-500"
-        href="#"
-      >
-        <span className="sr-only"> Download </span>
+      <a className={styles.a__link} href="#">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
