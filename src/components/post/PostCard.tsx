@@ -1,7 +1,7 @@
-import Completed from './status/Completed'
-import Progress from './status/Progress'
+import Completed from '../status/Completed'
+import Progress from '../status/Progress'
 
-function Card(props: any) {
+function PostCard(props: any) {
   return (
     <article className="rounded-xl border-2 border-gray-100 bg-white">
       <div className="flex items-start gap-4 p-4 sm:p-6 lg:p-8">
@@ -74,4 +74,4 @@ function Card(props: any) {
   )
 }
 
-export default Card
+export default PostCard
