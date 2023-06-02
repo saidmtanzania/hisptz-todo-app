@@ -1,0 +1,14 @@
+.filter__main {
+  @apply flex mt-3 ml-5 lg:ml-auto;
+}
+.filter__input {
+  @apply flex items-center mr-4;
+}
+
+.filter__label {
+  @apply ml-2 text-sm font-medium text-gray-500;
+}
+
+.filter__size {
+  @apply w-4 h-4;
+}

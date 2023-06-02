@@ -1,11 +1,9 @@
+import styles from './Pagination.module.css'
 function Pagination() {
   return (
-    <div className="flex items-center justify-center mb-3 fixed bottom-0 left-0 w-full">
-      <div className="inline-flex justify-center gap-1">
-        <a
-          href="#"
-          className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
-        >
+    <div className={styles.pagination__main}>
+      <div className={styles.pagination__min}>
+        <a href="#" className={styles.pagination__link}>
           <span className="sr-only">Prev Page</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -28,17 +26,14 @@ function Pagination() {
 
           <input
             type="number"
-            className="h-8 w-12 rounded border border-gray-100 bg-white p-0 text-center text-xs font-medium text-gray-900 [-moz-appearance:_textfield] [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
+            className={styles.pagination__input}
             min="1"
             value="2"
             id="PaginationPage"
           />
         </div>
 
-        <a
-          href="#"
-          className="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180"
-        >
+        <a href="#" className={styles.pagination__link}>
           <span className="sr-only">Next Page</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

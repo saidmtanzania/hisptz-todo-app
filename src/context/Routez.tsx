@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import NavigationBar from '../components/Bar/NavigationBar'
-import NewTodo from '../components/NewTodo'
+import NavigationBar from '../components/Bar/NavBar/NavigationBar'
+import NewTodo from '../components/Todo/NewTodo'
 import CardLayout from '../UI/CardLayout'
 import LoginForm from '../components/login/LoginForm'
 function Routez() {

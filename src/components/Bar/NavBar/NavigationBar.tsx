@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom'
-
+import styles from './NavigationBar.module.css'
 function NavigationBar() {
   return (
-    <div className="flex items-center justify-center mb-3 fixed top-2 left-0 w-full z-50">
-      <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
+    <div className={styles.nav__max}>
+      <div className={styles.nav__min}>
         <Link to="/new">
-          <button className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative">
+          <button className={styles.nav__btn}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -24,12 +24,10 @@ function NavigationBar() {
           </button>
         </Link>
 
-        <button className="inline-flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm text-blue-500 shadow-sm pointer-events-none focus:relative">
-          To Do List
-        </button>
+        <button className={styles['nav-main__btn']}>To Do List</button>
 
         <Link to="/views">
-          <button className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative">
+          <button className={styles.nav__btn}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

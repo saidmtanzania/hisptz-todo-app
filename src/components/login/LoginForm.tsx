@@ -1,47 +1,47 @@
+import styles from './Login.module.css'
 function LoginForm() {
   return (
     <div className="my-44 lg:my-20">
-      <div className="mb-12">
-        <h1 className="text-3xl font-extrabold text-red-700 sm:text-5xl block">
-          To Do List.
-        </h1>
-      </div>
+      <h1 className={styles.login__header}>To Do List.</h1>
+
       <div className="mx-auto lg:w-72">
-        <label
-          htmlFor="uname"
-          className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 mb-5"
-        >
+        <label htmlFor="uname" className={styles.label__login}>
           <input
             type="text"
             id="uname"
             placeholder="Username"
-            className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className={styles['form-label__input'] + ' peer'}
           />
 
-          <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+          <span
+            className={
+              styles.form__span +
+              ' peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'
+            }
+          >
             Username
           </span>
         </label>
-        <label
-          htmlFor="pass"
-          className="relative block overflow-hidden rounded-md border border-gray-200 px-3 pt-3 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600 mb-5"
-        >
+
+        <label htmlFor="pass" className={styles.label__login}>
           <input
             type="password"
             id="pass"
             placeholder="Password"
-            className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+            className={styles['form-label__input'] + ' peer'}
           />
 
-          <span className="absolute start-3 top-3 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs">
+          <span
+            className={
+              styles.form__span +
+              ' peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'
+            }
+          >
             Password
           </span>
         </label>
-        <a
-          className="group relative inline-flex items-center overflow-hidden rounded border border-current px-8 py-3 text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-          href="#"
-        >
-          <span className="absolute -start-full transition-all group-hover:start-4">
+        <a className={styles.form__link + ' group'} href="#">
+          <span className={styles.a__span + ' group-hover:start-4'}>
             <svg
               className="h-5 w-5 rtl:rotate-180"
               xmlns="http://www.w3.org/2000/svg"

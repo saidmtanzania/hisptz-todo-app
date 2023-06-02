@@ -1,18 +1,19 @@
-import FilterBar from './FilterBar'
+import FilterBar from '../FilterBar/FilterBar'
+import styles from './SearchBar.module.css'
 
 function SearchBar() {
   return (
     <div className="mx-auto">
-      <div className="lg:flex gap-2">
+      <div className="lg:flex gap-2 ml-3">
         <div className="relative mb-2">
           <input
             type="text"
             id="id"
             placeholder="Search by ID"
-            className="w-full px-3 rounded-md border-gray-200 focus:outline-none py-2.5 pe-10 shadow-md sm:text-sm"
+            className={styles.search__input}
           />
 
-          <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
+          <span className={styles.search__span}>
             <button
               type="button"
               className="rounded-full p-0.5 text-white hover:bg-slate-400"
