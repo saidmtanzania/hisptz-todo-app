@@ -14,7 +14,7 @@ function LoginForm() {
           <input
             type="text"
             id="uname"
-            placeholder="Title"
+            placeholder="Username"
             className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
 
@@ -29,7 +29,7 @@ function LoginForm() {
           <input
             type="password"
             id="pass"
-            placeholder="Title"
+            placeholder="Password"
             className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
 
