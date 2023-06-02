@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 function NavigationBar() {
   return (
-    <div className="flex items-center justify-center mb-3 fixed top-2 left-0 w-full">
+    <div className="flex items-center justify-center mb-3 fixed top-2 left-0 w-full z-50">
       <div className="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
         <Link to="/new">
           <button className="inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative">
