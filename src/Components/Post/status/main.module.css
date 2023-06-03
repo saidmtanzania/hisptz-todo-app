@@ -1,0 +1,7 @@
+.status__span {
+  @apply text-[10px] font-medium sm:text-xs;
+}
+
+.status__strong{
+    @apply -mb-[2px]  m-2 inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl px-3 py-1.5;
+}
