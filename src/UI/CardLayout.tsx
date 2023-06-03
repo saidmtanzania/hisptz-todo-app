@@ -1,20 +1,98 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import Card from '../Components/Post/PostCard'
 import Pagination from '../Components/Post/Pagination/Pagination'
 import SearchBar from '../Components/Bar/SearchBar/SearchBar'
+import styles from './CardLayout.module.css'
+
+interface CardData {
+  key: string
+  value: {
+    lastUpdated: any
+    id: number
+    title: string
+    created: string
+    completed: boolean
+    description: string
+  }
+}
 
 function CardLayout() {
-  const completed = true
+  const [cardData, setCardData] = useState<CardData[]>([])
+  const value = localStorage.getItem('username')
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response: any = await axios.get<CardData[]>(
+          `/dataStore/${value}?fields=.`
+        )
+        setCardData(response.data.entries as CardData[])
+      } catch (error) {
+        console.error('Error fetching card data:', error)
+      }
+    }
+
+    fetchData()
+  }, [value])
+
+  const SearchBy = async (id: any) => {
+    if (id === '') {
+      try {
+        const response: any = await axios.get<CardData[]>(
+          `/dataStore/${value}?fields=.`
+        )
+        setCardData(response.data.entries as CardData[])
+      } catch (error) {
+        console.error('Error fetching card data:', error)
+      }
+    }
+    axios
+      .get(`/dataStore/${value}/${id}`)
+      .then((response: any) => {
+        const searchData = response.data
+        if (searchData) {
+          const formattedData: CardData[] = [
+            {
+              key: searchData.id.toString(),
+              value: {
+                id: searchData.id,
+                title: searchData.title,
+                description: searchData.description,
+                completed: searchData.completed,
+                created: searchData.created,
+                lastUpdated: searchData.lastUpdated,
+              },
+            },
+          ]
+          setCardData(formattedData)
+        } else {
+          setCardData([])
+        }
+      })
+      .catch((error) => {
+        console.error('Error fetching card data:', error)
+      })
+  }
+
   return (
     <>
-      <div className="mt-10 mb-5 lg:w-72 mx-auto">
-        <SearchBar />
+      <div className={styles.SearchLay}>
+        <SearchBar searchBy={SearchBy} />
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-3 ">
-        <Card isCompleted={!completed} />
-        <Card isCompleted={completed} />
-        <Card isCompleted={!completed} />
+      <div className={styles.CardLay}>
+        {cardData.map((card) => (
+          <Card
+            key={card.key}
+            isCompleted={card.value.completed}
+            title={card.value.title}
+            description={card.value.description}
+            created={card.value.created}
+            lastUpdated={card.value.lastUpdated}
+          />
+        ))}
       </div>
-      <Pagination />
+      {/* <Pagination /> */}
     </>
   )
 }
