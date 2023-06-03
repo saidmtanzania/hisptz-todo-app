@@ -1,6 +1,6 @@
-import Card from '../components/post/PostCard'
-import Pagination from '../components/post/Pagination/Pagination'
-import SearchBar from '../components/Bar/SearchBar/SearchBar'
+import Card from '../Components/Post/PostCard'
+import Pagination from '../Components/Post/Pagination/Pagination'
+import SearchBar from '../Components/Bar/SearchBar/SearchBar'
 
 function CardLayout() {
   const completed = true

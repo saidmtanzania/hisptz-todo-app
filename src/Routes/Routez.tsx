@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import NavigationBar from '../components/Bar/NavBar/NavigationBar'
-import NewTodo from '../components/Todo/NewTodo'
+import NavigationBar from '../Components/Bar/NavBar/NavigationBar'
+import NewTodo from '../Components/Todo/NewTodo'
 import CardLayout from '../UI/CardLayout'
-import LoginForm from '../components/login/LoginForm'
+import LoginForm from '../Components/Login/LoginForm'
 function Routez() {
   const isLogin = true
   return (
