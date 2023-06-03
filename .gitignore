@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 file.txt
 App.tsx.txt
+.env

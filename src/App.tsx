@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import Router from './Routes/Routez'
 import './App.css'
 

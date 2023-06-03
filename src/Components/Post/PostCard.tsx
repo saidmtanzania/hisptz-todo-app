@@ -5,6 +5,7 @@ import Delete from './status/Delete'
 import Edit from './status/Edit'
 
 function PostCard(props: any) {
+  // const value = localStorage.getItem('username')
   return (
     <article className={styles.__article}>
       <div className={styles.art__sec}>

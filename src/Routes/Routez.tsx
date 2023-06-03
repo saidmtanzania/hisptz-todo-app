@@ -3,8 +3,13 @@ import NavigationBar from '../Components/Bar/NavBar/NavigationBar'
 import NewTodo from '../Components/Todo/NewTodo'
 import CardLayout from '../UI/CardLayout'
 import LoginForm from '../Components/Login/LoginForm'
+import { useState } from 'react'
+
 function Routez() {
-  const isLogin = true
+  const [isLogin, setLogin] = useState(false)
+  function updateLoginState() {
+    setLogin(true)
+  }
   return (
     <Router>
       {isLogin && <NavigationBar />}
@@ -12,7 +17,10 @@ function Routez() {
       <Routes>
         <Route path="/new" element={<NewTodo />} />
         <Route path="/views" element={<CardLayout />} />
-        <Route path="/" element={!isLogin && <LoginForm />} />
+        <Route
+          path="/"
+          element={!isLogin && <LoginForm data={updateLoginState} />}
+        />
       </Routes>
     </Router>
   )

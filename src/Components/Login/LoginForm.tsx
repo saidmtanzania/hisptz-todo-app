@@ -1,65 +1,82 @@
+import { useState } from 'react'
+import axios from 'axios'
 import styles from './Login.module.css'
-function LoginForm() {
+import { useNavigate } from 'react-router-dom'
+
+function LoginForm(props: any) {
+  const [username, setUsername] = useState('')
+  const navigate = useNavigate()
+
+  const handleLogin = async (e: any) => {
+    e.preventDefault()
+    if (username === '') return
+    axios
+      .get(`/dataStore/${username}`)
+      .then((response) => {
+        if (response.status === 200) {
+          localStorage.setItem('username', username)
+          props.data()
+          navigate('/views')
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 404) {
+          localStorage.setItem('username', username)
+          props.data()
+          navigate('/new')
+        }
+      })
+  }
+
   return (
     <div className="my-44 md:my-20">
       <h1 className={styles.login__header}>To Do List.</h1>
 
       <div className="mx-auto md:w-72">
-        <label htmlFor="uname" className={styles.label__login}>
-          <input
-            type="text"
-            id="uname"
-            placeholder="Username"
-            className={styles['form-label__input'] + ' peer'}
-          />
+        <form onSubmit={handleLogin}>
+          <label htmlFor="uname" className={styles.label__login}>
+            <input
+              type="text"
+              id="uname"
+              placeholder="Username"
+              className={styles['form-label__input'] + ' peer'}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
 
-          <span
-            className={
-              styles.form__span +
-              ' peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'
-            }
-          >
-            Username
-          </span>
-        </label>
-
-        <label htmlFor="pass" className={styles.label__login}>
-          <input
-            type="password"
-            id="pass"
-            placeholder="Password"
-            className={styles['form-label__input'] + ' peer'}
-          />
-
-          <span
-            className={
-              styles.form__span +
-              ' peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'
-            }
-          >
-            Password
-          </span>
-        </label>
-        <a className={styles.form__link + ' group'} href="#">
-          <span className={styles.a__span + ' group-hover:start-4'}>
-            <svg
-              className="h-5 w-5 rtl:rotate-180"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <span
+              className={
+                styles.form__span +
+                ' peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-3 peer-focus:text-xs'
+              }
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
-              />
-            </svg>
-          </span>
+              Username
+            </span>
+          </label>
 
-          <span className={styles.log__span}>Login</span>
-        </a>
+          <button type="submit" className={styles.form__link + ' group'}>
+            <span className={styles.a__span + ' group-hover:start-4'}>
+              <svg
+                className="h-5 w-5 rtl:rotate-180"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </span>
+
+            <span className={styles.log__span + ' group-hover:ms-4'}>
+              Login
+            </span>
+          </button>
+        </form>
       </div>
     </div>
   )
