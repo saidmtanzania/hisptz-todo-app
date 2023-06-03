@@ -92,7 +92,7 @@ function CardLayout() {
           />
         ))}
       </div>
-      {/* <Pagination /> */}
+      <Pagination />
     </>
   )
 }
