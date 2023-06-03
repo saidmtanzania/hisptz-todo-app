@@ -4,7 +4,7 @@ import styles from './SearchBar.module.css'
 function SearchBar() {
   return (
     <div className="mx-auto">
-      <div className="lg:flex gap-2 ml-3">
+      <div className="md:flex gap-2 ml-3">
         <div className="relative mb-2">
           <input
             type="text"

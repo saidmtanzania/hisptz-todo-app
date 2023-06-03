@@ -20,3 +20,7 @@
 .login__header {
   @apply mb-10 text-3xl font-extrabold text-red-700 sm:text-5xl block;
 }
+
+.log__span {
+  @apply text-sm font-medium transition-all group-hover:ms-4;
+}

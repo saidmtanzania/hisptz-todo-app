@@ -1,5 +1,5 @@
 .main__lay {
-  @apply mt-16 mx-auto lg:w-96;
+  @apply mt-16 mx-auto md:w-96;
 }
 
 .label__title {

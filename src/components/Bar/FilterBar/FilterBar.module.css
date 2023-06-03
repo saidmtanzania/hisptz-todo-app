@@ -1,5 +1,5 @@
 .filter__main {
-  @apply flex mt-3 ml-5 lg:ml-auto;
+  @apply flex mt-3 ml-5 md:ml-auto;
 }
 .filter__input {
   @apply flex items-center mr-4;

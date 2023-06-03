@@ -1,6 +1,10 @@
+import styles from './main.module.css'
+
 function Completed() {
   return (
-    <strong className="-mb-[2px] -me-[px] m-2 inline-flex items-center gap-1 rounded-ee-xl rounded-ss-xl bg-emerald-100  text-emerald-700 px-3 py-1.5">
+    <strong
+      className={styles.status__strong + ' bg-emerald-100 text-emerald-700'}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

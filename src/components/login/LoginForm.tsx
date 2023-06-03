@@ -1,10 +1,10 @@
 import styles from './Login.module.css'
 function LoginForm() {
   return (
-    <div className="my-44 lg:my-20">
+    <div className="my-44 md:my-20">
       <h1 className={styles.login__header}>To Do List.</h1>
 
-      <div className="mx-auto lg:w-72">
+      <div className="mx-auto md:w-72">
         <label htmlFor="uname" className={styles.label__login}>
           <input
             type="text"
@@ -58,9 +58,7 @@ function LoginForm() {
             </svg>
           </span>
 
-          <span className="text-sm font-medium transition-all group-hover:ms-4">
-            Login
-          </span>
+          <span className={styles.log__span}>Login</span>
         </a>
       </div>
     </div>
