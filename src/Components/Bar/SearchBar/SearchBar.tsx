@@ -7,7 +7,6 @@ function SearchBar(props: any) {
 
   const handleSearch = () => {
     props.searchBy(searchTerm)
-    console.log('Perform search for:', searchTerm)
   }
 
   const handleChange = (event: any) => {

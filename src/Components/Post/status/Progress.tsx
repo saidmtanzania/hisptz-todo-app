@@ -1,7 +1,14 @@
 import styles from './main.module.css'
-function Pending() {
+function Pending(props: any) {
+  const handleEditClick = () => {
+    confirm('Are you sure you want to mark this as completed?')
+    alert('Progress clicked! with ID:' + props.id)
+  }
   return (
-    <strong className={styles.status__strong + ' bg-amber-100 text-amber-700'}>
+    <strong
+      className={styles.status__strong + ' bg-amber-100 text-amber-700'}
+      onClick={handleEditClick}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

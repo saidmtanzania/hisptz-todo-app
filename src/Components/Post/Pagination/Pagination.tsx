@@ -28,7 +28,7 @@ function Pagination() {
             type="number"
             className={styles.pagination__input}
             min="1"
-            value="2"
+            value="1"
             id="PaginationPage"
           />
         </div>

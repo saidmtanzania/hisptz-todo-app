@@ -8,12 +8,12 @@ import styles from './CardLayout.module.css'
 interface CardData {
   key: string
   value: {
-    lastUpdated: any
     id: number
     title: string
-    created: string
-    completed: boolean
     description: string
+    completed: boolean
+    created: string
+    lastUpdated: any
   }
 }
 
@@ -29,7 +29,7 @@ function CardLayout() {
         )
         setCardData(response.data.entries as CardData[])
       } catch (error) {
-        console.error('Error fetching card data:', error)
+        // console.error('Error fetching card data:', error)
       }
     }
 
@@ -84,6 +84,7 @@ function CardLayout() {
         {cardData.map((card) => (
           <Card
             key={card.key}
+            id={card.key}
             isCompleted={card.value.completed}
             title={card.value.title}
             description={card.value.description}

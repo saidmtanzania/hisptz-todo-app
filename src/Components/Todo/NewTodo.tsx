@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { useState } from 'react'
 import styles from './NewTodo.module.css'
+import { useNavigate } from 'react-router-dom'
 
 function NewTodo() {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const navigate = useNavigate()
   const value = localStorage.getItem('username')
 
   const handleFormSubmit = async (e: any) => {
@@ -22,6 +24,7 @@ function NewTodo() {
     try {
       const response = await axios.post(`/dataStore/${value}/${todo.id}`, todo)
       if (response.data.httpStatusCode === 201) {
+        navigate('/views')
         console.log(response.data)
       }
     } catch (error) {

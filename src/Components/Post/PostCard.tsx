@@ -3,13 +3,14 @@ import Progress from './status/Progress'
 import styles from './PostCard.module.css'
 import Delete from './status/Delete'
 import Edit from './status/Edit'
+import Ids from './status/Ids'
 
 function PostCard(props: any) {
   // const value = localStorage.getItem('username')
   return (
     <article className={styles.__article}>
       <div className={styles.art__sec}>
-        <div className="text-center">
+        <div className=" text-center">
           <h3 className="font-medium sm:text-lg">
             <a href="#" className="hover:underline">
               {props.title}
@@ -33,9 +34,14 @@ function PostCard(props: any) {
         </div>
       </dl>
       <div className="flex justify-end">
-        {props.isCompleted ? <Completed /> : <Progress />}
-        <Edit />
-        <Delete />
+        <Ids id={props.id} />
+        {props.isCompleted ? (
+          <Completed id={props.id} />
+        ) : (
+          <Progress id={props.id} />
+        )}
+        <Edit id={props.id} />
+        <Delete id={props.id} />
       </div>
       <div className="flex justify-end my-1"></div>
     </article>

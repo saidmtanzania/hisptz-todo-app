@@ -1,7 +1,13 @@
 import styles from './main.module.css'
-function Delete() {
+function Delete(props: any) {
+  const handleEditClick = () => {
+    alert('Delete clicked! with ID:' + props.id)
+  }
   return (
-    <strong className={styles.status__strong + ' bg-red-600 text-white'}>
+    <strong
+      className={styles.status__strong + ' bg-red-600 text-white'}
+      onClick={handleEditClick}
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

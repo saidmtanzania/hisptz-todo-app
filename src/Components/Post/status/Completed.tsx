@@ -1,9 +1,14 @@
 import styles from './main.module.css'
 
-function Completed() {
+function Completed(props: any) {
+  const handleEditClick = () => {
+    confirm('Are you sure you want to mark this as Progress?')
+    alert('Completed clicked! with ID:' + props.id)
+  }
   return (
     <strong
       className={styles.status__strong + ' bg-emerald-100 text-emerald-700'}
+      onClick={handleEditClick}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
