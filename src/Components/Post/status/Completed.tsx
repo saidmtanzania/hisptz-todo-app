@@ -1,9 +1,22 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import swal from 'sweetalert'
 import styles from './main.module.css'
 
-function Completed(props: any) {
+function Completed() {
   const handleEditClick = () => {
-    confirm('Are you sure you want to mark this as Progress?')
-    alert('Completed clicked! with ID:' + props.id)
+    swal({
+      title: 'Are you sure?',
+      text: 'you want to mark this as Progress',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        swal('Poof! Your imaginary file has been update!', {
+          icon: 'success',
+        })
+      }
+    })
   }
   return (
     <strong

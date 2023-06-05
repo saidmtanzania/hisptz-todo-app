@@ -4,6 +4,7 @@ import Card from '../Components/Post/PostCard'
 import Pagination from '../Components/Post/Pagination/Pagination'
 import SearchBar from '../Components/Bar/SearchBar/SearchBar'
 import styles from './CardLayout.module.css'
+import Modal from '../Components/Post/status/Modal'
 
 interface CardData {
   key: string
@@ -18,6 +19,30 @@ interface CardData {
 }
 
 function CardLayout() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+
+  const handleOpenModal = () => {
+    setIsOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsOpen(false)
+  }
+
+  const handleTitleChange = (value: any) => {
+    setTitle(value)
+  }
+
+  const handleDescriptionChange = (value: any) => {
+    setDescription(value)
+  }
+
+  const handleUpdate = () => {
+    console.log('Updating:', title, description)
+    handleCloseModal()
+  }
   const [cardData, setCardData] = useState<CardData[]>([])
   const value = localStorage.getItem('username')
 
@@ -80,20 +105,33 @@ function CardLayout() {
       <div className={styles.SearchLay}>
         <SearchBar searchBy={SearchBy} />
       </div>
-      <div className={styles.CardLay}>
-        {cardData.map((card) => (
-          <Card
-            key={card.key}
-            id={card.key}
-            isCompleted={card.value.completed}
-            title={card.value.title}
-            description={card.value.description}
-            created={card.value.created}
-            lastUpdated={card.value.lastUpdated}
-          />
-        ))}
-      </div>
-      <Pagination />
+      {isOpen ? (
+        <Modal
+          isOpen={isOpen}
+          onClose={handleCloseModal}
+          onTitleChange={handleTitleChange}
+          onDescriptionChange={handleDescriptionChange}
+          onUpdate={handleUpdate}
+        />
+      ) : (
+        <>
+          <div className={styles.CardLay}>
+            {cardData.map((card) => (
+              <Card
+                key={card.key}
+                id={card.key}
+                isCompleted={card.value.completed}
+                title={card.value.title}
+                description={card.value.description}
+                created={card.value.created}
+                lastUpdated={card.value.lastUpdated}
+                handleOpenModal={handleOpenModal}
+              />
+            ))}
+          </div>
+          <Pagination />
+        </>
+      )}
     </>
   )
 }
