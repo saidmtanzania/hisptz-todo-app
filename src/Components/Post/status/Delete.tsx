@@ -1,21 +1,11 @@
-/* eslint-disable import/no-extraneous-dependencies */
+import { deleteTodo } from '../../Api/ApiClient'
 import styles from './main.module.css'
-import swal from 'sweetalert'
 
-function Delete() {
-  const handleEditClick = () => {
-    swal({
-      title: 'Are you sure?',
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal('Poof! Your imaginary file has been deleted!', {
-          icon: 'success',
-        })
-      }
-    })
+function Delete(props: any) {
+  const handleEditClick = async () => {
+    const value = localStorage.getItem('username')
+    const response = await deleteTodo(props.id, value)
+    props.handle(response)
   }
   return (
     <strong

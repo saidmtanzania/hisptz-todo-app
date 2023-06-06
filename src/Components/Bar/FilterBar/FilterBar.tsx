@@ -15,8 +15,6 @@ function FilterBar() {
     }))
   }
 
-  console.log(filters)
-
   return (
     <div className={styles.filter__main}>
       <div className={styles.filter__input}>

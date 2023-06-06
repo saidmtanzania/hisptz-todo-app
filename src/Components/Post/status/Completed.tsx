@@ -1,22 +1,16 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import swal from 'sweetalert'
 import styles from './main.module.css'
 
-function Completed() {
+function Completed(props: any) {
   const handleEditClick = () => {
-    swal({
-      title: 'Are you sure?',
-      text: 'you want to mark this as Progress',
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal('Poof! Your imaginary file has been update!', {
-          icon: 'success',
-        })
-      }
-    })
+    const data = {
+      title: props.title,
+      completed: false,
+      description: props.description,
+      created: props.created,
+      lastUpdated: new Date().toISOString(),
+      id: props.id,
+    }
+    props.handles(data)
   }
   return (
     <strong
@@ -37,7 +31,7 @@ function Completed() {
           d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
         />
       </svg>
-      <span className="text-[10px] font-medium sm:text-xs">Completed</span>
+      <span className={styles.status__span}>Completed</span>
     </strong>
   )
 }

@@ -1,5 +1,5 @@
+import { simpleLogin } from '../Api/ApiClient'
 import { useState } from 'react'
-import axios from 'axios'
 import styles from './Login.module.css'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,23 +9,21 @@ function LoginForm(props: any) {
 
   const handleLogin = async (e: any) => {
     e.preventDefault()
+
     if (username === '') return
-    axios
-      .get(`/dataStore/${username}`)
-      .then((response) => {
-        if (response.status === 200) {
-          localStorage.setItem('username', username)
-          props.data()
-          navigate('/views')
-        }
-      })
-      .catch((error) => {
-        if (error.response.status === 404) {
-          localStorage.setItem('username', username)
-          props.data()
-          navigate('/new')
-        }
-      })
+
+    const response: any = await simpleLogin(username)
+    if (response === 200) {
+      localStorage.setItem('username', username)
+      props.data()
+      navigate('/views')
+    }
+
+    if (response === 404) {
+      localStorage.setItem('username', username)
+      props.data()
+      navigate('/new')
+    }
   }
 
   return (

@@ -1,41 +1,32 @@
-import React from 'react'
-import styles from './modal.module.css'
+import { useState } from 'react'
+import styles from './Modal.module.css'
 
-interface ModalProps {
-  isOpen: boolean
-  onClose: () => void
-  onTitleChange: (value: string) => void
-  onDescriptionChange: (value: string) => void
-  onUpdate: () => void
-}
+function Modal(props: any) {
+  const [title, setTitle] = useState(props.title)
+  const [description, setDescription] = useState(props.description)
 
-const Modal: React.FC<ModalProps> = ({
-  isOpen,
-  onClose,
-  onTitleChange,
-  onDescriptionChange,
-  onUpdate,
-}) => {
   const handleTitleChange = (e: any) => {
-    onTitleChange(e.target.value)
+    setTitle(e.target.value)
   }
 
   const handleDescriptionChange = (e: any) => {
-    onDescriptionChange(e.target.value)
+    setDescription(e.target.value)
   }
 
   const handleSubmit = (e: any) => {
     e.preventDefault()
-    onUpdate()
+    const lastUpdated = new Date().toISOString()
+    const status = 0
+    props.onUpdate(title, description, lastUpdated, status)
   }
 
-  if (!isOpen) {
+  if (!props.isOpen) {
     return null
   }
 
   return (
-    <div className="fixed inset-0 flex place-items-center justify-center z-50">
-      <div className="bg-white rounded-lg shadow-lg p-6 w-96">
+    <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center z-20">
+      <div className="bg-white bg-opacity-90 rounded-lg shadow-lg p-6 w-96">
         <form onSubmit={handleSubmit}>
           <label htmlFor="title" className={styles.label__title}>
             <input
@@ -43,6 +34,7 @@ const Modal: React.FC<ModalProps> = ({
               id="title"
               placeholder="Title"
               className={styles.title__input + ' peer'}
+              value={title}
               onChange={handleTitleChange}
             />
 
@@ -60,6 +52,7 @@ const Modal: React.FC<ModalProps> = ({
               id="Description"
               placeholder="Description"
               className={styles.text__area + ' peer '}
+              value={description}
               onChange={handleDescriptionChange}
             ></textarea>
 
@@ -82,7 +75,7 @@ const Modal: React.FC<ModalProps> = ({
             <button
               className="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded"
               type="button"
-              onClick={onClose}
+              onClick={props.onClose}
             >
               Cancel
             </button>

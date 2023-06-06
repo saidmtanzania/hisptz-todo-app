@@ -6,7 +6,7 @@ import Edit from './status/Edit'
 import Ids from './status/Ids'
 
 function PostCard(props: any) {
-  // const value = localStorage.getItem('username')
+  // console.log(props)
   return (
     <>
       <article className={styles.__article}>
@@ -37,12 +37,34 @@ function PostCard(props: any) {
         <div className="flex justify-end">
           <Ids id={props.id} />
           {props.isCompleted ? (
-            <Completed id={props.id} />
+            <Completed
+              isCompleted={props.completed}
+              title={props.title}
+              description={props.description}
+              created={props.created}
+              lastUpdated={props.lastUpdated}
+              id={props.id}
+              handles={props.handleStatus}
+            />
           ) : (
-            <Progress id={props.id} />
+            <Progress
+              isCompleted={props.completed}
+              title={props.title}
+              description={props.description}
+              created={props.created}
+              lastUpdated={props.lastUpdated}
+              id={props.id}
+              handles={props.handleStatus}
+            />
           )}
-          <Edit handle={props.handleOpenModal} id={props.id} />
-          <Delete id={props.id} />
+          <Edit
+            handle={props.handleOpenModal}
+            title={props.title}
+            description={props.description}
+            created={props.created}
+            id={props.id}
+          />
+          <Delete id={props.id} handle={props.handleUpdate} />
         </div>
         <div className="flex justify-end my-1"></div>
       </article>

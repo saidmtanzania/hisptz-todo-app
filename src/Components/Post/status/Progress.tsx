@@ -1,22 +1,16 @@
-/* eslint-disable import/no-extraneous-dependencies */
-import swal from 'sweetalert'
 import styles from './main.module.css'
 
-function Pending() {
+function Pending(props: any) {
   const handleEditClick = () => {
-    swal({
-      title: 'Are you sure?',
-      text: 'you want to mark this completed',
-      icon: 'warning',
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        swal('Successfuly Updated!', {
-          icon: 'success',
-        })
-      }
-    })
+    const data = {
+      title: props.title,
+      completed: true,
+      description: props.description,
+      created: props.created,
+      lastUpdated: new Date().toISOString(),
+      id: props.id,
+    }
+    props.handles(data)
   }
   return (
     <strong

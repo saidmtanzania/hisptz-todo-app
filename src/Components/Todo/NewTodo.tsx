@@ -1,7 +1,7 @@
-import axios from 'axios'
 import { useState } from 'react'
 import styles from './NewTodo.module.css'
 import { useNavigate } from 'react-router-dom'
+import { postTodo } from '../Api/ApiClient'
 
 function NewTodo() {
   const [title, setTitle] = useState('')
@@ -21,14 +21,9 @@ function NewTodo() {
       lastUpdated: new Date().toISOString(),
     }
 
-    try {
-      const response = await axios.post(`/dataStore/${value}/${todo.id}`, todo)
-      if (response.data.httpStatusCode === 201) {
-        navigate('/views')
-        console.log(response.data)
-      }
-    } catch (error) {
-      console.log(error)
+    const response = await postTodo(todo.id, value, todo)
+    if (response === 201) {
+      navigate('/views')
     }
   }
 
