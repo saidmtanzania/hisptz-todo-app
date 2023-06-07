@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-use-before-define */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {
   getTodo,
   getTodoById,
@@ -21,97 +21,108 @@ function CardLayout(props: any) {
   const value = sessionStorage.getItem('username')
   props.data()
 
-  const handleOpenModal = (card: CardData) => {
+  const handleOpenModal = useCallback((card: CardData) => {
     setSelectedCard(card)
     setIsOpen(true)
-  }
+  }, [])
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setIsOpen(false)
     setSelectedCard(null)
-  }
+  }, [])
 
-  const handleUpdate = async (
-    title: string,
-    description: string,
-    lastUpdated: string
-  ) => {
-    const completed = false
-    const updatedCardData = {
-      ...selectedCard,
-      value: {
-        ...selectedCard.value,
-        title,
-        description,
-        lastUpdated,
-        completed,
-      },
-    }
-
-    const data = {
-      id: updatedCardData.value.id,
-      completed: updatedCardData.value.completed,
-      description: updatedCardData.value.description,
-      title: updatedCardData.value.title,
-      created: updatedCardData.value.created,
-      lastUpdated: updatedCardData.value.lastUpdated,
-    }
-    const response = await updateTodo(data.id, value, data)
-    if (response != 200) return
-    setSelectedCard(null)
-    handleCloseModal()
-    await fetchData()
-  }
-
-  const makeState = async (data: any) => {
-    const response = await updateTodo(data.id, value, data)
-    if (response != 200) return
-    setSelectedCard(null)
-    await fetchData()
-  }
-
-  const searchBy = async (id: any) => {
-    if (id === '') {
-      await fetchData()
-    } else {
-      const formattedData: any = await getTodoById(id, value)
-      if (formattedData !== null) {
-        setCardData(formattedData)
-      } else {
-        await fetchData()
-      }
-    }
-  }
-
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     const todoData: any = await getTodo(value, '.', page, 3)
     setCardData(todoData)
-  }
+  }, [value, page])
 
-  const updateStatus = async (status: any) => {
-    if (status === 200) {
-      await fetchData()
-    }
-  }
+  const handleUpdate = useCallback(
+    async (title: string, description: string, lastUpdated: string) => {
+      const completed = false
+      const updatedCardData = {
+        ...selectedCard,
+        value: {
+          ...selectedCard.value,
+          title,
+          description,
+          lastUpdated,
+          completed,
+        },
+      }
 
-  const handlePageChange = (event: any) => {
+      const data = {
+        id: updatedCardData.value.id,
+        completed: updatedCardData.value.completed,
+        description: updatedCardData.value.description,
+        title: updatedCardData.value.title,
+        created: updatedCardData.value.created,
+        lastUpdated: updatedCardData.value.lastUpdated,
+      }
+
+      const response = await updateTodo(data.id, value, data)
+      if (response !== 200) return
+
+      setSelectedCard(null)
+      handleCloseModal()
+      fetchData()
+    },
+    [selectedCard, value, handleCloseModal, fetchData]
+  )
+
+  const makeState = useCallback(
+    async (data: any) => {
+      const response = await updateTodo(data.id, value, data)
+      if (response !== 200) return
+
+      setSelectedCard(null)
+      fetchData()
+    },
+    [value, fetchData]
+  )
+
+  const searchBy = useCallback(
+    async (id: any) => {
+      if (id === '') {
+        fetchData()
+      } else {
+        const formattedData: any = await getTodoById(id, value)
+        if (formattedData !== null) {
+          setCardData(formattedData)
+        } else {
+          fetchData()
+        }
+      }
+    },
+    [value, fetchData]
+  )
+
+  const updateStatus = useCallback(
+    async (status: any) => {
+      if (status === 200) {
+        fetchData()
+      }
+    },
+    [fetchData]
+  )
+
+  const handlePageChange = useCallback((event: any) => {
     const newPageNumber = parseInt(event.target.value, 10)
     setPage(newPageNumber)
-  }
+  }, [])
 
-  const goToPreviousPage = () => {
+  const goToPreviousPage = useCallback(() => {
     if (page > 1) {
       setPage((prevPageNumber) => prevPageNumber - 1)
     }
-  }
+  }, [page])
 
-  const goToNextPage = () => {
+  const goToNextPage = useCallback(() => {
     setPage((prevPageNumber) => prevPageNumber + 1)
-  }
+  }, [])
 
   useEffect(() => {
     fetchData()
-  }, [])
+  }, [fetchData])
 
   return (
     <React.Fragment>
