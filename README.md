@@ -2,7 +2,7 @@
 
 This is teaser To Do App. includes / is for login details if user is new it will redirect to /new if user already have an account it will redirect to /views.
 
-NOTE: I use simple proxy because of CORS policy so i already set url in .sample.env
+NOTE: I use simple Proxy  Server because of CORS policy so i already set url in .sample.env
 
 ## Contents
 
