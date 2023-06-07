@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useEffect, useState } from 'react'
 import {
@@ -14,6 +15,7 @@ import Modal from '../Components/Post/Modal/Modal'
 
 function CardLayout(props: any) {
   const [isOpen, setIsOpen] = useState(false)
+  const [page, setPage] = useState(1)
   const [cardData, setCardData] = useState<CardData[]>([])
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null)
   const value = sessionStorage.getItem('username')
@@ -34,9 +36,16 @@ function CardLayout(props: any) {
     description: string,
     lastUpdated: string
   ) => {
+    const completed = false
     const updatedCardData = {
       ...selectedCard,
-      value: { ...selectedCard.value, title, description, lastUpdated },
+      value: {
+        ...selectedCard.value,
+        title,
+        description,
+        lastUpdated,
+        completed,
+      },
     }
 
     const data = {
@@ -59,7 +68,6 @@ function CardLayout(props: any) {
     if (response != 200) return
     setSelectedCard(null)
     await fetchData()
-    console.log(response)
   }
 
   const searchBy = async (id: any) => {
@@ -76,7 +84,7 @@ function CardLayout(props: any) {
   }
 
   const fetchData = async () => {
-    const todoData: any = await getTodo(value, '.')
+    const todoData: any = await getTodo(value, '.', page, 3)
     setCardData(todoData)
   }
 
@@ -84,6 +92,21 @@ function CardLayout(props: any) {
     if (status === 200) {
       await fetchData()
     }
+  }
+
+  const handlePageChange = (event: any) => {
+    const newPageNumber = parseInt(event.target.value, 10)
+    setPage(newPageNumber)
+  }
+
+  const goToPreviousPage = () => {
+    if (page > 1) {
+      setPage((prevPageNumber) => prevPageNumber - 1)
+    }
+  }
+
+  const goToNextPage = () => {
+    setPage((prevPageNumber) => prevPageNumber + 1)
   }
 
   useEffect(() => {
@@ -112,7 +135,12 @@ function CardLayout(props: any) {
           />
         ))}
       </div>
-      <Pagination />
+      <Pagination
+        handlePageChange={handlePageChange}
+        goToPreviousPage={goToPreviousPage}
+        goToNextPage={goToNextPage}
+        page={page}
+      />
       {selectedCard && (
         <Modal
           isOpen={isOpen}

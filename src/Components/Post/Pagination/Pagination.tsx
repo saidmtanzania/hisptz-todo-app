@@ -1,9 +1,14 @@
 import styles from './Pagination.module.css'
-function Pagination() {
+
+function Pagination(props: any) {
   return (
     <div className={styles.pagination__main}>
       <div className={styles.pagination__min}>
-        <a href="#" className={styles.pagination__link}>
+        <button
+          type="button"
+          className={styles.pagination__link}
+          onClick={props.goToPreviousPage}
+        >
           <span className="sr-only">Prev Page</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -17,7 +22,7 @@ function Pagination() {
               clipRule="evenodd"
             />
           </svg>
-        </a>
+        </button>
 
         <div>
           <label htmlFor="PaginationPage" className="sr-only">
@@ -28,12 +33,17 @@ function Pagination() {
             type="number"
             className={styles.pagination__input}
             min="1"
-            value="1"
+            value={props.page}
             id="PaginationPage"
+            onChange={props.handlePageChange}
           />
         </div>
 
-        <a href="#" className={styles.pagination__link}>
+        <button
+          type="button"
+          className={styles.pagination__link}
+          onClick={props.goToNextPage}
+        >
           <span className="sr-only">Next Page</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +57,7 @@ function Pagination() {
               clipRule="evenodd"
             />
           </svg>
-        </a>
+        </button>
       </div>
     </div>
   )

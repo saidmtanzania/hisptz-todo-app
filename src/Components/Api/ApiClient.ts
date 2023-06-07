@@ -12,10 +12,17 @@ export interface CardData {
   }
 }
 
-export const getTodo = async (value: any, filters: any) => {
+export const getTodo = async (
+  value: any,
+  filters: any,
+  page: any,
+  pageSize: any
+) => {
   try {
     const response: any = await axios.get<CardData[]>(
-      `/dataStore/${value}?fields=${filters || '.'} `
+      `/dataStore/${value}?fields=${
+        filters || '.'
+      }&page=${page}&pageSize=${pageSize}`
     )
     return response.data.entries as CardData[]
   } catch (error: any) {
