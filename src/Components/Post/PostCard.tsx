@@ -6,7 +6,6 @@ import Edit from './status/Edit'
 import Ids from './status/Ids'
 
 function PostCard(props: any) {
-  // console.log(props)
   return (
     <>
       <article className={styles.__article}>

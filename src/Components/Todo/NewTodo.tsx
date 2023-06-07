@@ -3,11 +3,12 @@ import styles from './NewTodo.module.css'
 import { useNavigate } from 'react-router-dom'
 import { postTodo } from '../Api/ApiClient'
 
-function NewTodo() {
+function NewTodo(props: any) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const navigate = useNavigate()
-  const value = localStorage.getItem('username')
+  const value = sessionStorage.getItem('username')
+  props.data()
 
   const handleFormSubmit = async (e: any) => {
     e.preventDefault()

@@ -3,7 +3,7 @@ import styles from './main.module.css'
 
 function Delete(props: any) {
   const handleEditClick = async () => {
-    const value = localStorage.getItem('username')
+    const value = sessionStorage.getItem('username')
     const response = await deleteTodo(props.id, value)
     props.handle(response)
   }

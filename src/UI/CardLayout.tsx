@@ -12,11 +12,12 @@ import SearchBar from '../Components/Bar/SearchBar/SearchBar'
 import styles from './CardLayout.module.css'
 import Modal from '../Components/Post/Modal/Modal'
 
-function CardLayout() {
+function CardLayout(props: any) {
   const [isOpen, setIsOpen] = useState(false)
   const [cardData, setCardData] = useState<CardData[]>([])
   const [selectedCard, setSelectedCard] = useState<CardData | null>(null)
-  const value = localStorage.getItem('username')
+  const value = sessionStorage.getItem('username')
+  props.data()
 
   const handleOpenModal = (card: CardData) => {
     setSelectedCard(card)
@@ -90,40 +91,38 @@ function CardLayout() {
   }, [])
 
   return (
-    <>
-      <React.Fragment>
-        <div className={styles.SearchLay}>
-          <SearchBar searchBy={searchBy} />
-        </div>
+    <React.Fragment>
+      <div className={styles.SearchLay}>
+        <SearchBar searchBy={searchBy} />
+      </div>
 
-        <div className={styles.CardLay}>
-          {cardData.map((card) => (
-            <Card
-              key={card.key}
-              id={card.key}
-              isCompleted={card.value.completed}
-              title={card.value.title}
-              description={card.value.description}
-              created={card.value.created}
-              lastUpdated={card.value.lastUpdated}
-              handleUpdate={updateStatus}
-              handleOpenModal={() => handleOpenModal(card)}
-              handleStatus={makeState}
-            />
-          ))}
-        </div>
-        <Pagination />
-        {selectedCard && (
-          <Modal
-            isOpen={isOpen}
-            onClose={handleCloseModal}
-            onUpdate={handleUpdate}
-            title={selectedCard.value.title}
-            description={selectedCard.value.description}
+      <div className={styles.CardLay}>
+        {cardData.map((card) => (
+          <Card
+            key={card.key}
+            id={card.key}
+            isCompleted={card.value.completed}
+            title={card.value.title}
+            description={card.value.description}
+            created={card.value.created}
+            lastUpdated={card.value.lastUpdated}
+            handleUpdate={updateStatus}
+            handleOpenModal={() => handleOpenModal(card)}
+            handleStatus={makeState}
           />
-        )}
-      </React.Fragment>
-    </>
+        ))}
+      </div>
+      <Pagination />
+      {selectedCard && (
+        <Modal
+          isOpen={isOpen}
+          onClose={handleCloseModal}
+          onUpdate={handleUpdate}
+          title={selectedCard.value.title}
+          description={selectedCard.value.description}
+        />
+      )}
+    </React.Fragment>
   )
 }
 

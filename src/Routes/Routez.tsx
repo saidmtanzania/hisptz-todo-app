@@ -7,19 +7,22 @@ import { useState } from 'react'
 
 function Routez() {
   const [isLogin, setLogin] = useState(false)
-  function updateLoginState() {
+
+  const handleLogin = () => {
+    sessionStorage.setItem('isLogin', 'true')
     setLogin(true)
   }
+
   return (
     <Router>
       {isLogin && <NavigationBar />}
 
       <Routes>
-        <Route path="/new" element={<NewTodo />} />
-        <Route path="/views" element={<CardLayout />} />
+        <Route path="/new" element={<NewTodo data={handleLogin} />} />
+        <Route path="/views" element={<CardLayout data={handleLogin} />} />
         <Route
           path="/"
-          element={!isLogin && <LoginForm data={updateLoginState} />}
+          element={!isLogin && <LoginForm data={handleLogin} />}
         />
       </Routes>
     </Router>
