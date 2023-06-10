@@ -14,7 +14,7 @@ NOTE: I use simple Proxy  Server because of CORS policy so i already set url in 
 1. Clone this repository
 
 ```
-https://github.com/saidmtanzania/IPF-Fund_Request_APP.git
+https://github.com/saidmtanzania/hisptz-todo-app.git
 ```
 
 2. Create .env file.``` .sample.env file for Basic Auth references ```
